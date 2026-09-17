@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<defs>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1d2459"/><stop offset=".52" stop-color="#7e3a71"/><stop offset="1" stop-color="#e78b52"/></linearGradient>
+ <radialGradient id="r"><stop stop-color="#ffd46d"/><stop offset="1" stop-color="#ff9c5a" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="800" height="1000" rx="36" fill="url(#g)"/>
+<circle cx="620" cy="170" r="220" fill="url(#r)" opacity=".55"/>
+<g fill="#fff" opacity=".85"><circle cx="105" cy="130" r="8"/><circle cx="165" cy="80" r="5"/><circle cx="690" cy="290" r="7"/><circle cx="610" cy="90" r="5"/></g>
+<text x="400" y="210" text-anchor="middle" font-family="Arial" font-size="52" font-weight="700" fill="#ffd476">CAMPUS</text>
+<text x="400" y="300" text-anchor="middle" font-family="Arial" font-size="92" font-weight="900" fill="#fff">MUSIC</text>
+<text x="400" y="385" text-anchor="middle" font-family="Arial" font-size="82" font-weight="900" fill="#fff">NIGHT</text>
+<g transform="translate(400 600)">
+ <circle cx="0" cy="0" r="120" fill="#211d39" opacity=".55"/>
+ <path d="M-35 -120 q45 -35 78 15 l-32 65 q-16 30 -10 68 l28 150 h-45 l-12 -130 -15 130 h-45 l28 -160 q7 -38 -2 -70z" fill="#ffc15d"/>
+ <rect x="-12" y="-175" width="24" height="165" rx="10" fill="#f7e1b2" transform="rotate(18)"/>
+ <circle cx="16" cy="-183" r="26" fill="#f7e1b2"/>
+</g>
+<text x="400" y="835" text-anchor="middle" font-family="Arial" font-size="33" font-weight="700" fill="#fff">FRIDAY · 7 PM</text>
+<text x="400" y="885" text-anchor="middle" font-family="Arial" font-size="27" fill="#fff">STUDENT ACTIVITY HALL A</text>
+<text x="400" y="935" text-anchor="middle" font-family="Arial" font-size="24" fill="#ffe5bf">LIVE MUSIC · FOOD · CAMPUS COMMUNITY</text>
+</svg>
