@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700">
+<defs><linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffd3a2"/><stop offset=".46" stop-color="#f5b5a5"/><stop offset="1" stop-color="#8fa7c6"/></linearGradient></defs>
+<rect width="1600" height="700" fill="url(#sunset)"/>
+<circle cx="1280" cy="185" r="95" fill="#ffe88b" opacity=".9"/>
+<path d="M0 430 Q300 360 600 425 T1100 400 T1600 420 V700 H0Z" fill="#658465"/>
+<path d="M0 500 Q350 455 700 500 T1300 475 T1600 490 V700 H0Z" fill="#3d6850"/>
+<g fill="#253d42" opacity=".8">
+ <rect x="500" y="275" width="560" height="210"/><rect x="730" y="135" width="95" height="240"/><polygon points="777,75 720,140 835,140"/>
+</g>
+<path d="M560 700 Q650 520 780 480 Q920 525 1050 700Z" fill="#c9bda9"/>
+<g fill="#274b45"><circle cx="210" cy="330" r="130"/><circle cx="1410" cy="335" r="135"/></g>
+<g fill="#50715e"><circle cx="210" cy="290" r="105"/><circle cx="1410" cy="295" r="110"/></g>
+</svg>
