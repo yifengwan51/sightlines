@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SightLines: a scenario-based serious game for accessibility awareness and inclusive decision-making on campus.">
+  <title>SightLines | Accessibility Decisions on Campus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-scene="home">
+<a class="skip-link" href="#app">Skip to main content</a>
+
+<div class="ambient-layer" aria-hidden="true">
+  <span class="ambient-orb orb-a"></span>
+  <span class="ambient-orb orb-b"></span>
+  <span class="ambient-orb orb-c"></span>
+  <span class="grain"></span>
+</div>
+
+<div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<div id="voice-caption" class="voice-caption hidden" aria-live="polite" aria-atomic="true">
+  <strong id="voice-caption-speaker">Narrator</strong><span id="voice-caption-text"></span>
+</div>
+
+<audio id="bg-music" loop preload="auto">
+  <source src="assets/sightlines_theme.ogg" type="audio/ogg">
+</audio>
+<audio id="ambience-audio" loop preload="auto"></audio>
+<div id="scene-transition" class="scene-transition" aria-hidden="true"><span></span><strong id="scene-transition-label">Loading scene…</strong></div>
+
+<div class="site-shell">
+  <header class="site-header">
+    <button id="home-button" class="brand-button" type="button" aria-label="Return to SightLines home">
+      <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+      <span class="brand-copy">
+        <span class="brand">SightLines</span>
+        <span class="brand-sub">Accessibility decisions on campus</span>
+      </span>
+    </button>
+
+    <div class="header-tools">
+      <button id="how-button" class="chip-button" type="button">
+        <span aria-hidden="true">?</span><span>How to play</span>
+      </button>
+      <button id="music-button" class="chip-button music-button" type="button" aria-pressed="false" title="Optional background music">
+        <span id="music-icon" aria-hidden="true">♫</span><span id="music-label">Music off</span>
+      </button>
+      <button id="voice-button" class="chip-button voice-button" type="button" aria-pressed="false" title="Character voice acting">
+        <span aria-hidden="true">◖))</span><span id="voice-label">Voices off</span>
+      </button>
+      <button id="settings-button" class="icon-button" type="button" aria-label="Open audio and motion settings" title="Settings">⚙</button>
+      <button id="fullscreen-button" class="icon-button" type="button" aria-label="Enter fullscreen mode" title="Fullscreen">⛶</button>
+
+      <div class="progress-box" aria-label="Session progress">
+        <div class="progress-row">
+          <span>Journey</span>
+          <span id="progress-text">0 / 3 scenarios completed</span>
+        </div>
+        <div id="progressbar" class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <strong>SightLines</strong>
+      <span>Proof-of-Concept Serious Game</span>
+    </div>
+    <nav aria-label="Prototype information">
+      <button data-modal="about" type="button">About</button>
+      <button data-modal="evidence" type="button">Evidence & Design</button>
+      <button data-modal="sources" type="button">Sources & Credits</button>
+      <button data-modal="accessibility" type="button">Accessibility</button>
+      <button data-modal="ethics" type="button">Ethics & Representation</button>
+    </nav>
+    <p>Scenario content is provisional and intended for educational design testing.</p>
+  </footer>
+</div>
+
+<div id="modal" class="modal-backdrop hidden" role="presentation">
+  <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button id="modal-close" class="modal-close" type="button" aria-label="Close">×</button>
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+  </section>
+</div>
+
+<div id="settings-modal" class="modal-backdrop hidden" role="presentation">
+  <section class="modal-card settings-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <button id="settings-close" class="modal-close" type="button" aria-label="Close settings">×</button>
+    <p class="eyebrow">Experience settings</p>
+    <h2 id="settings-title">Sound & motion</h2>
+
+    <div class="setting-row">
+      <div>
+        <strong>Background music</strong>
+        <p>Original ambient theme. Off by default.</p>
+      </div>
+      <button id="settings-music" class="toggle-switch" type="button" role="switch" aria-checked="false"><span></span></button>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <strong>Interface sound effects</strong>
+        <p>Optional tones for inspect, decisions and completion.</p>
+      </div>
+      <button id="settings-sfx" class="toggle-switch" type="button" role="switch" aria-checked="false"><span></span></button>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <strong>Character voice acting</strong>
+        <p>Characters and the narrator use the browser's installed English voices. Dialogue is always captioned.</p>
+      </div>
+      <button id="settings-voice" class="toggle-switch" type="button" role="switch" aria-checked="false"><span></span></button>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <strong>Scene ambience</strong>
+        <p>Low-volume campus, digital and meeting-room ambience that changes with each scene.</p>
+      </div>
+      <button id="settings-ambience" class="toggle-switch" type="button" role="switch" aria-checked="false"><span></span></button>
+    </div>
+
+    <div class="setting-row slider-row">
+      <div>
+        <strong>Sound volume</strong>
+        <p>Applies to music and sound effects.</p>
+      </div>
+      <label class="volume-control">
+        <span class="sr-only">Sound volume</span>
+        <input id="volume-slider" type="range" min="0" max="100" value="45">
+        <output id="volume-output">45%</output>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <strong>Decorative motion</strong>
+        <p>Animated backgrounds, transitions and celebration particles.</p>
+      </div>
+      <button id="settings-motion" class="toggle-switch" type="button" role="switch" aria-checked="true"><span></span></button>
+    </div>
+
+    <div class="settings-note">
+      Essential information never depends on music, voice acting, sound effects or animation.
+    </div>
+  </section>
+</div>
+
+<div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+<script src="scenario-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
